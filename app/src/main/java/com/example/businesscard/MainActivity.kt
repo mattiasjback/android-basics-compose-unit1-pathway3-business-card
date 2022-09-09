@@ -3,7 +3,10 @@ package com.example.businesscard
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,22 +25,48 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    BusinessCard()
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun Greeting(name: String) {
+fun Title(name: String) {
     Text(text = "Hello $name!")
+}
+
+@Composable
+fun ContactInfo() {
+    Column {
+        ContactInfoEntry()
+        ContactInfoEntry()
+        ContactInfoEntry()
+    }
+}
+
+@Composable
+fun BusinessCard() {
+    Column {
+        Title(name = "Mattias Bäck")
+        ContactInfo()
+    }
+}
+
+@Composable
+fun ContactInfoEntry() {
+    Row {
+        //Icon(painter = , contentDescription = )
+        Text(text = "phone number")
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     BusinessCardTheme {
-        Greeting("Android")
+        BusinessCard()
     }
 }
