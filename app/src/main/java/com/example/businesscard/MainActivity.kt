@@ -3,6 +3,7 @@ package com.example.businesscard
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -10,6 +11,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.fontResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,11 +40,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-
-private val nameSize = 32.sp
-private val titleSize = 18.sp
-
+private val androidColor = Color(0xFF3ddc84)
 
 @Composable
 fun LogoAndTitle() {
@@ -49,17 +52,25 @@ fun LogoAndTitle() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        Logo()
+        val image = painterResource(id = R.drawable.android_logo)
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = Modifier
+                .width(60.dp)
+                .height(60.dp),
+            contentScale = ContentScale.FillHeight
+        )
         Text(
             text = "Mattias Bäck",
             color = MaterialTheme.colors.onBackground,
-            fontSize = nameSize,
+            fontSize = 32.sp,
             textAlign = TextAlign.Center
         )
         Text(
             text = "Android Developer",
-            color = MaterialTheme.colors.secondary,
-            fontSize = titleSize,
+            color = androidColor,
+            fontSize = 16.sp,
             textAlign = TextAlign.Center
         )
     }
@@ -76,7 +87,8 @@ fun ContactInfo() {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(8.dp),
+            .padding(8.dp)
+            .padding(bottom = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
